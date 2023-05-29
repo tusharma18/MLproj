@@ -41,7 +41,7 @@ test_generator = test_datagen.flow_from_directory('./Dataset/test_set', target_s
 model.fit(train_generator, steps_per_epoch=train_generator.n//train_generator.batch_size, epochs=epochs, validation_data=test_generator, validation_steps=test_generator.n//test_generator.batch_size)
 
 import h5py
-model.save('cgp.h5')
+model.save('model.h5')
 
 import matplotlib.pyplot as plt
 
