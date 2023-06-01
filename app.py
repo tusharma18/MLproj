@@ -6,7 +6,7 @@ from keras.models import load_model
 import time
 
 # Load the trained model
-classifier = load_model('model1.h5')
+classifier = load_model('model.h5')
 
 # Constants for image size
 image_x, image_y = 64, 64
@@ -28,8 +28,8 @@ sentence_formation_active = False
 def predictor():
     import numpy as np
     from keras.preprocessing import image
-    test_image = image.load_img('1.png', target_size=(64, 64))
-    test_image = test_image.convert('RGB')
+    test_image = image.load_img('1.png', target_size=(64, 64), color_mode='grayscale')
+    # test_image = test_image.convert('RGB')
     test_image = image.img_to_array(test_image)
     test_image = np.expand_dims(test_image, axis=0)
     result = classifier.predict(test_image)
@@ -102,14 +102,7 @@ def update_trackbars():
     
     # Update the scanned label
     scanned_label.config(text=img_text)
-        # if append_text != '':
-        #     if len(append_text) > 25:
-        #         finalBuffer.append(append_text)
-        #         output_text.insert(tk.END, finalBuffer[z] + "\n")
-        #         output_text.see(tk.END)
-        #         append_text = ''
-        #         z += 1
-    
+
     sentence_text.delete('1.0', tk.END)
     sentence_text.insert(tk.END, append_text)
 
@@ -127,7 +120,6 @@ def toggle_freeze(event):
     global append_text
     if event.char == 'c':
         append_text += scanned_label.cget('text')
-        # freezing_text.config(text=append_text)
         sentence_text.delete('1.0', tk.END)
         sentence_text.insert(tk.END, append_text)
 

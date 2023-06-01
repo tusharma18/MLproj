@@ -130,6 +130,10 @@ def toggle_freeze(event):
         # freezing_text.config(text=append_text)
         sentence_text.delete('1.0', tk.END)
         sentence_text.insert(tk.END, append_text)
+    elif event.keysym == 'space':  # Add space when spacebar is pressed
+        append_text += ' '
+        sentence_text.delete('1.0', tk.END)
+        sentence_text.insert(tk.END, append_text)
 
 def update_append_text(event):
     global append_text
@@ -279,6 +283,10 @@ def update():
 
 # Start the video update process
 update()
+
+# Create the save button
+save_button = tk.Button(buttons_frame, text="Save", command=save_final_buffer)
+save_button.pack(pady=10)
 
 # Start the main event loop
 root.mainloop()
